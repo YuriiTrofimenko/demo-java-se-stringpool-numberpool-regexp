@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
@@ -93,5 +94,37 @@ public class Main {
                 * // и вывести все данные списка в консоль
             }
         *  */
+
+        // Pattern simplePattern = Pattern.compile("(?:a|b|c)#(x|y|z)");
+        /* Pattern simplePattern = Pattern.compile("[abc]{1,2}#(x|y|z)");
+        // (?:[\.][a-z]{2,3}){1,2}
+        Matcher urlMatcher
+            = simplePattern.matcher("b#z");
+        // System.out.println(urlMatcher.matches());
+        // System.out.println(urlMatcher.groupCount());
+        while (urlMatcher.find()) {
+            System.out.println("Groups:");
+            for (int i = 1; i <= urlMatcher.groupCount(); i++) {
+                System.out.println("Group:");
+                System.out.println(urlMatcher.group(i));
+            }
+            System.out.println();
+        } */
+
+        Pattern simpleUrlPattern = Pattern.compile("[^:]+://([.a-z]+/?)+\\?([a-z]+=[0-9]+&?)*");
+        // Pattern simpleUrlPattern = Pattern.compile("[^:]+://([.a-z]+/?)+");
+        Matcher urlMatcher
+            // = simpleUrlPattern.matcher("http://www.microsoft.com/some/other/url/path/?price=5");
+            = simpleUrlPattern.matcher("http://www.microsoft.com/some/other/url/path/?price=5&quantity=100");
+        // System.out.println(urlMatcher.matches());
+        // System.out.println(urlMatcher.groupCount());
+        while (urlMatcher.find()) {
+            System.out.println("Groups:");
+            for (int i = 1; i <= urlMatcher.groupCount(); i++) {
+                System.out.println("Group:");
+                System.out.println(urlMatcher.group(i));
+            }
+            System.out.println();
+        }
     }
 }
